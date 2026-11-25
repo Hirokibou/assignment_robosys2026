@@ -1,0 +1,1 @@
+Hello! Nice to meet you! My name is Hiroki Ueno. For a university assignment, I created a program that sorts characters. I used Python as the programming language. Thank you for reading!

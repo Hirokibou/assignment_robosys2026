@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Hiroki Ueno <kirohi.noeu@gmail.com>
+# SPDX-License-Identifier: BSD-3-Clause
+
+import sys
+
+
+def main():
+    # A〜Z の出現回数を格納する辞書を0で初期化
+    counts = {chr(ord('A') + i): 0 for i in range(26)}
+    total_chars = 0
+
+    # 標準入力から1行ずつ読み込む
+    for line in sys.stdin:
+        for ch in line:
+            upper_ch = ch.upper()
+            if 'A' <= upper_ch <= 'Z':
+                counts[upper_ch] += 1
+                total_chars += 1
+
+    # 出現回数が多い順（降順）に並び替え
+    # 回数が同じ場合はアルファベット順（A→Z）を維持する
+    sorted_stats = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+
+    # 結果の出力（標準出力）
+    print(f"--- アルファベットの出現頻度（多い順） [総数: {total_chars}文字] ---")
+    print("文字,出現回数,出現率(%)")
+    for ch, count in sorted_stats:
+        percentage = (count / total_chars * 100.0) if total_chars > 0 else 0.0
+        print(f"{ch},{count:5d}回,{percentage:.2f}%")
+
+
+if __name__ == "__main__":
+    main()
